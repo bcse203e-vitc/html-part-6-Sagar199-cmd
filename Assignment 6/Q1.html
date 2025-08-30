@@ -1,1 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form>
+        <label for="name">Name: </label>
+        <input type="text" name="name" id="name" required>
+        <br>
+        <label for="email">Email: </label>
+        <input type="email" name="email" id="email" required>
+        <br>
+        <label for="password">Password: </label>
+        <input type="password" name="password" id="password" required>
+        <br><br>
+        <button id="submit" type="submit">Submit</button>
+    </form>
 
+    <script>
+        const emailex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        const passwordex = /^(?=.*[A-Z])(?=.*\d).{8,}$/;
+        const emailInput = document.getElementById('email');
+        const passwordInput = document.getElementById('password');
+        let flag = true;
+        document.getElementById('submit').addEventListener('click', function(event) {
+            const emailValue = emailInput.value;
+            const passwordValue = passwordInput.value;
+            if (emailex.test(emailValue)) {
+                console.log("Valid email");
+            } else {
+                console.log("Invalid email");
+                flag = false;
+                
+            }
+            if (passwordex.test(passwordValue)) {
+                console.log("Valid password");
+            } else {
+                console.log("Invalid password");
+                flag = false;
+            }
+            if (flag) {
+                alert("Form submitted successfully!");
+            } else {
+                event.preventDefault();
+                alert("Please correct the errors in the form.");
+            }
+            flag = true;
+            
+        });
+        emailInput.addEventListener('blur', function() {
+            const emailValue = emailInput.value;
+
+            if (!emailex.test(emailValue)) {
+                console.log("Invalid email");
+                alert("Invalid email format");
+            }
+        });
+        passwordInput.addEventListener('blur', function() {
+            const passwordValue = passwordInput.value;
+
+            if (!passwordex.test(passwordValue)) {
+                console.log("Invalid password");
+                alert("Password must be at least 8 characters long, contain at least one uppercase letter and one number.");
+            }
+        });
+
+    </script>
+</body>
+</html>
