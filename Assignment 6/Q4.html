@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Dynamic Hobbies</title>
+</head>
+<body>
+  <h3>Your Hobbies</h3>
+  <div id="box">
+    <input type="text" placeholder="Hobby"><br><br>
+  </div>
+  <button id="btn" type="button">Add Hobby</button>
+
+  <script>
+    var btn = document.getElementById("btn");
+    var box = document.getElementById("box");
+
+    btn.addEventListener("click", function() {
+      var newInput = document.createElement("input");
+      newInput.type = "text";
+      newInput.placeholder = "Hobby";
+      box.appendChild(newInput);
+      box.appendChild(document.createElement("br"));
+      box.appendChild(document.createElement("br"));
+    });
+  </script>
+</body>
+</html>
