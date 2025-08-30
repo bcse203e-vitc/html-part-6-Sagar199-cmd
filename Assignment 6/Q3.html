@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Phone Validation</title>
+</head>
+<body>
+  <form>
+    <label for="phone">Phone: </label>
+    <input type="text" id="phone" oninput="checkPhone()">
+    <div id="status"></div>
+  </form>
+
+  <script>
+    function checkPhone() {
+      var phone = document.getElementById("phone").value;
+      var status = document.getElementById("status");
+      var regex = /^(\(\d{3}\)\s?\d{3}-\d{4}|\d{3}-\d{3}-\d{4})$/;
+
+      if (regex.test(phone)) {
+        status.innerHTML = "Valid phone number!";
+        status.style.color = "green";
+      } else {
+        status.innerHTML = "Invalid phone number!";
+        status.style.color = "red";
+      }
+    }
+  </script>
+</body>
+</html>
