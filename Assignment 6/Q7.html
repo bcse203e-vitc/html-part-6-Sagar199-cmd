@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Date Validation</title>
+</head>
+<body>
+  <form onsubmit="return checkDate()">
+    <label>Enter Date (DD/MM/YYYY): </label>
+    <input type="text" id="date">
+    <button type="submit">Submit</button>
+    <p id="msg"></p>
+  </form>
+
+  <script>
+    function checkDate() {
+      var d = document.getElementById("date").value;
+      var msg = document.getElementById("msg");
+      var reg = /^\d{2}\/\d{2}\/\d{4}$/;
+
+      if (reg.test(d)) {
+        msg.innerHTML = "Valid date format!";
+        msg.style.color = "green";
+        return true;
+      } else {
+        alert("Invalid date format! Please use DD/MM/YYYY");
+        msg.innerHTML = "Invalid date format!";
+        msg.style.color = "red";
+        return false;
+      }
+    }
+  </script>
+</body>
+</html>
