@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Username Validation</title>
+</head>
+<body>
+  <form onsubmit="return checkUser()">
+    <label>Username: </label>
+    <input type="text" id="user">
+    <button type="submit">Submit</button>
+    <p id="msg"></p>
+  </form>
+
+  <script>
+    function checkUser() {
+      var name = document.getElementById("user").value;
+      var msg = document.getElementById("msg");
+      var reg = /^[a-zA-Z0-9_]{3,16}$/;
+
+      if (reg.test(name)) {
+        msg.innerHTML = "Valid username!";
+        msg.style.color = "green";
+        return true;
+      } else {
+        msg.innerHTML = "Invalid username! (3-16 letters, numbers, underscores only)";
+        msg.style.color = "red";
+        return false;
+      }
+    }
+  </script>
+</body>
+</html>
