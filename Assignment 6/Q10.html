@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Dynamic Form UI</title>
+</head>
+<body>
+  <h3>Build Your Form</h3>
+  <select id="sel">
+    <option value="text">Text</option>
+    <option value="email">Email</option>
+    <option value="password">Password</option>
+  </select>
+  <button id="addBtn" type="button">Add</button>
+
+  <form id="form">
+    <div id="fields"></div>
+    <button type="submit">Submit</button>
+  </form>
+  <p id="out"></p>
+
+  <script>
+    var sel = document.getElementById("sel");
+    var addBtn = document.getElementById("addBtn");
+    var fields = document.getElementById("fields");
+    var out = document.getElementById("out");
+
+    addBtn.addEventListener("click", function() {
+      var type = sel.value;
+      var inp = document.createElement("input");
+      inp.type = type;
+      inp.placeholder = "Enter " + type;
+
+      fields.appendChild(inp);
+      fields.appendChild(document.createElement("br"));
+    });
+
+    document.getElementById("form").addEventListener("submit", function(e) {
+      e.preventDefault();
+      var inputs = fields.getElementsByTagName("input");
+      for (var i = 0; i < inputs.length; i++) {
+        var val = inputs[i].value;
+        var valid = false;
+        switch (inputs[i].type) {
+          case "text":
+            valid = /^[a-zA-Z0-9 ]+$/.test(val);
+            break;
+          case "email":
+            valid = /^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(val);
+            break;
+          case "password":
+            valid = /^.{6,}$/.test(val);
+            break;
+        }
+        if (!valid) {
+          out.textContent = "Invalid " + inputs[i].type + " field!";
+          out.style.color = "red";
+          return;
+        }
+      }
+      out.textContent = "All fields are valid!";
+      out.style.color = "green";
+    });
+  </script>
+</body>
+</html>
