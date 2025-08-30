@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Hex Color Validation</title>
+</head>
+<body>
+  <label>Enter Color Code: </label>
+  <input type="text" id="color" oninput="checkColor()">
+  <br><br>
+  <div id="box" style="display:inline-block;width:50px;height:25px;border:1px solid black;"></div>
+  <p id="msg"></p>
+
+  <script>
+    function checkColor() {
+      var c = document.getElementById("color").value;
+      var box = document.getElementById("box");
+      var msg = document.getElementById("msg");
+      var reg = /^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$/;
+
+      if (reg.test(c)) {
+        box.style.backgroundColor = c;
+        msg.innerHTML = "Valid color code!";
+        msg.style.color = "green";
+      } else {
+        box.style.backgroundColor = "white";
+        msg.innerHTML = "Invalid hex code!";
+        msg.style.color = "red";
+      }
+    }
+  </script>
+</body>
+</html>
