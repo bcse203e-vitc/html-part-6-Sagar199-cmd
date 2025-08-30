@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Continent and Country</title>
+</head>
+<body>
+  <label>Select Continent: </label>
+  <select id="continent" onchange="loadCountries()">
+    <option value="">--Select--</option>
+    <option value="Asia">Asia</option>
+    <option value="Europe">Europe</option>
+    <option value="Africa">Africa</option>
+  </select>
+
+  <label> Country: </label>
+  <select id="country">
+    <option value="">--Select--</option>
+  </select>
+
+  <script>
+    var data = {
+      Asia: ["India", "China", "Japan"],
+      Europe: ["France", "Germany", "Italy"],
+      Africa: ["Nigeria", "Egypt", "Kenya"]
+    };
+
+    function loadCountries() {
+      var cont = document.getElementById("continent").value;
+      var country = document.getElementById("country");
+      country.innerHTML = "<option value=''>--Select--</option>";
+
+      if (cont && data[cont]) {
+        for (var i = 0; i < data[cont].length; i++) {
+          var opt = document.createElement("option");
+          opt.value = data[cont][i];
+          opt.text = data[cont][i];
+          country.appendChild(opt);
+        }
+      }
+    }
+  </script>
+</body>
+</html>
